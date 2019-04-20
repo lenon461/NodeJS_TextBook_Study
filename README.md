@@ -3,6 +3,10 @@
 
 1. Expresss SNS service < nodebird >
 
+
+----------------------------------------
+.env
 COOKIE_SECRET=nodebirdsecret
 KAKAO_ID=f266128012661edaed95082a79995420
+----------------------------------------
 
