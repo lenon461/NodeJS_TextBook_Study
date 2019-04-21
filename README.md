@@ -75,3 +75,6 @@ COOKIE_SECRET=nodebirdcall
 CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
 ~~~
    
+### 1.3
+
+* 미들웨어 호출시 무조건 콜백 마지막인자로 next 안넘겨주면 안넘어감
