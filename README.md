@@ -79,3 +79,18 @@ CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
 
 * 미들웨어 호출시 무조건 콜백 마지막인자로 next 를 넘겨줘야할 때가 있고 아닐때가 있음.
 * 몽고DB는 네임스페이스에 따라 저장되어있는 콜렉션이 다름. 
+
+
+### 2. Socket Chat Server
+---
+
+* 사용한 미들웨어
+  - express
+  - morgan
+  - cookie-parser
+  - express-session
+  - connect-flash
+  - color-hash ( 랜덤한 컬러로 해쉬 )
+  - socket.io ( 소켓 I.O. )
+  - ws ( 웹 소켓 )
+
