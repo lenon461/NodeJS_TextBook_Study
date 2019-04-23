@@ -15,10 +15,10 @@
   - nodemon ( 서버자동시작 )
   - passport ( 로컬로그인 & 카카오로그인 )
   - multer ( 이미지 업로드 ) 
+  - sequelize ( MYSQL-Node linking 라이브러리 )
   
 * 시용한 데이터베이스
   - MYSQL
-  - sequelize ( Node 라이브러리 )
   
 * Client Code
   - pug
@@ -96,3 +96,18 @@ CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
   - multer
   - axios
 
+### 3. Realtime Auction Server  
+---
+
+* 사용한 미들웨어
+  - express
+  - morgan
+  - cookie-parser
+  - express-session
+  - connect-flash
+  - passport
+  - socket.io
+  - multer
+  - sequelize
+  - sse ( 서버 센트 이벤트 - 실시간 처리 )
+  - node-schedule ( 스케줄링 )
