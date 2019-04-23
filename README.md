@@ -93,4 +93,6 @@ CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
   - color-hash ( 랜덤한 컬러로 해쉬 )
   - socket.io ( 소켓 I.O. )
   - ws ( 웹 소켓 )
+  - multer
+  - axios
 
