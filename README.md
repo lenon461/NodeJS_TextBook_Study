@@ -111,3 +111,18 @@ CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
   - sequelize
   - sse ( 서버 센트 이벤트 - 실시간 처리 )
   - node-schedule ( 스케줄링 )
+
+** callback 을 비동기함수로 선언해주면 await 을 사용할 수 있음
+
+### 4. Google MAP API Searching Server  
+---
+
+* 사용한 미들웨어
+  - express
+  - morgan
+  - cookie-parser
+  - express-session
+  - connect-flash
+  - @google/maps ( Google Map ApI)
+
+  + google map api 인증 키 발급받아 사용하기
