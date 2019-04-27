@@ -33,6 +33,8 @@ block content
           if twit.img
             .twit-img
               img(src=twit.img alt='섬네일')
+          if user && user.id == twit.user.id 
+            button.delete 삭제
           if user && user.id !== twit.user.id && !like
             button.like 좋아요
           else if user && user.id !== twit.user.id && like
@@ -62,9 +64,9 @@ block content
       tag.addEventListener('click', function () {
         var isLoggedIn = document.querySelector('#my-id');
         if (isLoggedIn) {
-          var userId = tag.parentNode.querySelector('.twit-user-id').value;
+          var twitcreateruserId = tag.parentNode.querySelector('.twit-user-id').value;
           var myId = isLoggedIn.value;
-          if (userId !== myId) {
+          if (twitcreateruserId !== myId) {
             if (confirm('팔로잉하시겠습니까?')) {
               var xhr = new XMLHttpRequest();
               xhr.onload = function () {
@@ -74,7 +76,7 @@ block content
                   console.error(xhr.responseText);
                 }
               };
-              xhr.open('POST', '/user/' + userId + '/follow');
+              xhr.open('POST', '/user/' + twitcreateruserId + '/follow');
               xhr.send();
             }
           }
@@ -85,7 +87,7 @@ block content
       tag.addEventListener('click', function () {
         var isLoggedIn = document.querySelector('#my-id');
         if (isLoggedIn) {
-          var userId = tag.parentNode.querySelector('.twit-user-id').value;
+          var twitcreateruserId = tag.parentNode.querySelector('.twit-user-id').value;
           var myId = isLoggedIn.value;
           if (userId !== myId) {
             if (confirm('언팔로잉하시겠습니까?')) {
@@ -97,7 +99,7 @@ block content
                   console.error(xhr.responseText);
                 }
               };
-              xhr.open('POST', '/user/' + userId + '/follow');
+              xhr.open('POST', '/user/' + twitcreateruserId + '/follow');
               xhr.send();
             }
           }
@@ -119,7 +121,28 @@ block content
           };
           xhr.open('POST', '/user/' + twitId + '/like');
           xhr.send();
-          
+        }
+      });
+    });
+    document.querySelectorAll('.delete').forEach(function (tag) {
+      tag.addEventListener('click', function () {
+        var isLoggedIn = document.querySelector('#my-id');
+        var myId = isLoggedIn.value; 
+        var twitId = tag.parentNode.querySelector('.twit-id').value;
+        var twitcreaterId = tag.parentNode.querySelector('.twit-user-id').value;
+        if (isLoggedIn) {
+          if(twitcreaterId == myId){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                location.reload();
+              } else {
+                console.error(xhr.responseText);
+              }
+          };
+          xhr.open('DELETE', '/post/' + twitId + '/delete');
+          xhr.send();
+          }
         }
       });
     });
