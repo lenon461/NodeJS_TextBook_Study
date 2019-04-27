@@ -8,6 +8,21 @@ router.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { title: '내 정보 - NodeBird', user: req.user });
 });
 
+router.post('/profile', isLoggedIn, async(req, res, next) => {
+    try{
+        const { nick } = req.body;
+        const user = await User.find({ where: { id: req.user.id } });
+        user.update({ nick : nick });
+
+        res.redirect('/profile');
+
+    } catch (error) {
+        next(error);
+
+
+    }
+});
+
 router.get('/join', isNotLoggedIn, (req, res) => {
   res.render('join', {
     title: '회원가입 - NodeBird',

@@ -33,6 +33,14 @@ COOKIE_SECRET=nodebirdsecret
 KAKAO_ID=f266128012661edaed95082a79995420  
 ~~~
 
++ 팔로잉 끊기 
++ 프로필 정보 변경하기
+    - 닉네임 수정기능 추가
+
+++ note
+    - 비동기 함수 콜백을 사용할 때는 항상 try, catch 를 넣어주자 catch 문에서는 next(error)를 추가하여 에러처리르 해주자
+    - 시퀄라이즈에서는 A.getB , A.addB a.setB, A.removeB 관계있는 로우를 조회, 생성, 수정, 제거 할수 있다
+
 ### 1.1. WEP API SERVER < nodebird >
 ---
 

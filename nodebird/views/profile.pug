@@ -12,3 +12,11 @@ block content
       if user.Followers
         for follower in user.Followers
           div= follower.nick
+
+    container 
+    form#hashtag-form(action='/profile' method='post')
+        .input-group
+            label(for='new-nick') 
+            input#email(type='text' name='nick' required autofocus)
+        button#join-btn.btn(type='submit') 닉네임 바꾸기
+
