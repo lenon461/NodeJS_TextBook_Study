@@ -84,6 +84,8 @@ JWT_SECRET=jwtSecret
 COOKIE_SECRET=nodebirdcall
 CLIENT_SECRET=3b021d95-cb24-41f3-b16a-8770984d5468
 ~~~
+
+  + 팔로워 팔로잉 목록 가져오는 API 추가 /follower||following/:id(nick)
    
 ### 1.3
 
