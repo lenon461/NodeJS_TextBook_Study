@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { isLoggedIn } = require('./middlewares');
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const test = require('../models');
 
 const router = express.Router();
@@ -29,6 +29,26 @@ router.post('/:id/follow', isLoggedIn, async(req, res, next) => {
         //console.log(test);
 
         res.send('success');
+    } catch (error){
+        console.error(error);
+        next(error);
+    }
+});
+
+router.post('/:id/like', isLoggedIn, async(req, res, next) => {
+    try {
+        const post = await Post.find({ where: { id: req.params.id } });
+        const like = await post.getLiker({ where: { id: req.user.id }});
+        
+        if(like && like.length){
+            console.log("removelike");
+            await post.removeLiker(parseInt(req.user.id, 10));
+        } else{
+            console.log("addlike");
+            await post.addLiker(parseInt(req.user.id, 10));
+        }
+        res.redirect('/');
+
     } catch (error){
         console.error(error);
         next(error);
