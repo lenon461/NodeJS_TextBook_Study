@@ -9,6 +9,7 @@ const router = express.Router();
 router.post('/token', apiLimiter , async (req, res) => {
     const { clientSecret } = req.body;
     try {
+        console.log(clientSecret);
         const domain = await Domain.find({
             where : { clientSecret },
             include: { 
@@ -26,7 +27,7 @@ router.post('/token', apiLimiter , async (req, res) => {
             id: domain.user.id,
             nick: domain.user.nick,
         }, process.env.JWT_SECRET, {
-            expiresIn: '1m',
+            expiresIn: '30m',
             issuer: 'nodebird',
         });
         return res.json({
@@ -86,6 +87,53 @@ router.get('/posts/hashtag/:title', verifyToken, apiLimiter, async (req, res) =>
             message: '서버 에러',
         });
     }
+});
+
+router.get('/follower/:user', verifyToken, apiLimiter, async (req, res) => {
+    try {
+        const user = await User.find({ where : { nick: req.params.user } });
+        if( !user ){
+            return res.status(404).json({
+                code: 404,
+                message: '검색 결과가 없습니다',
+            });
+        }
+        const followers = await user.getFollowers();
+        return res.json({
+            code: 200,
+            payload: followers,
+        });
+    } catch (error){
+        console.error(error);
+        return res.status(500).json({
+            code: 500,
+            message: '서버 에러',
+        });
+    }
+        
+});
+router.get('/following/:user', verifyToken, apiLimiter, async (req, res) => {
+    try {
+        const user = await User.find({ where : { nick: req.params.user } });
+        if( !user ){
+            return res.status(404).json({
+                code: 404,
+                message: '검색 결과가 없습니다',
+            });
+        }
+        const followers = await user.getFollowings();
+        return res.json({
+            code: 200,
+            payload: followers,
+        });
+    } catch (error){
+        console.error(error);
+        return res.status(500).json({
+            code: 500,
+            message: '서버 에러',
+        });
+    }
+        
 });
 
 

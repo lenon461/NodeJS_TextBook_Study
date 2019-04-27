@@ -47,4 +47,19 @@ router.get('/search/:hashtag', async (req, res, next) => {
     }
 });
 
+router.get('/follower/:user', async (req, res, next) => {
+    try {
+        const result = await request(
+            req, `/follower/${encodeURIComponent(req.params.user)}`,
+        );
+        res.json(result.data);
+    } catch(error){
+        if(error.code){
+            console.error(error);
+            next(error);
+        }
+    }
+
+});
+
 module.exports = router;
