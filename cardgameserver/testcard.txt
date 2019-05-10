@@ -1,0 +1,94 @@
+{
+  "peoples_hand": [
+    [
+      "*1",
+      "3S",
+      "9D",
+      "9C",
+      "8S",
+      "6H",
+      "8D",
+      "*J",
+      "7H",
+      "QC",
+      "3C",
+      "3D",
+      "4H"
+    ],
+    [
+      "6S",
+      "5S",
+      "4C",
+      "9H",
+      "5D",
+      "TS",
+      "2C",
+      "QD",
+      "3H",
+      "7C",
+      "9S",
+      "JD",
+      "4S",
+      "5H"
+    ],
+    [
+      "JC",
+      "QS",
+      "2H",
+      "2D",
+      "8H",
+      "*D",
+      "2S",
+      "7S",
+      "6D",
+      "8C",
+      "AS",
+      "TH",
+      "7D",
+      "KS"
+    ],
+    [
+      "QH",
+      "5C",
+      "KH",
+      "TD",
+      "KD",
+      "6C",
+      "JS",
+      "AC",
+      "KC",
+      "4D",
+      "JH",
+      "TC",
+      "AH",
+      "*C"
+    ]
+  ],
+  "peoples_acquired": [],
+  "peoples_large_t": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "peoples_small_t": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "peoples_name": [],
+  "team1_member": [],
+  "team2_member": [],
+  "team1_point": 0,
+  "team2_point": 0,
+  "card_dummy": [],
+  "field_card": [
+      "AD"],
+  "field_card_point": 0,
+  "top_card": [
+      "AD"],
+  "top_card_power": 0,
+  "first_player": "0",
+  "next_player": 0
+}
