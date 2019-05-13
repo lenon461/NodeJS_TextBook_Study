@@ -1,7 +1,6 @@
 >> NodeJSTextBookStudy  
 >> 노드제이에스 백엔드 서버개발자 실습
 
-test
 
 ### 1. Expresss SNS SERVICE < nodebird >
 ---
