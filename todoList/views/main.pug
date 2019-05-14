@@ -1,0 +1,44 @@
+extends layout
+block content
+  h1 ToDoList
+  p Welcome to #{title}
+  fieldset
+    legend 할일 목록
+    table
+     thead
+       tr
+        th 제목
+        th 내용
+        th 마감기한
+        th 우선순위
+        th 완료여부
+     tbody
+       for job in jobs
+        tr(data-id=job._id)
+          td= job.title
+          td= job.contents
+          td= job.deadline
+          td= job.priority
+          td= job.complete == 1 ? '완료' : '미완료'
+          form(action=`/job/${job._id}/complete?_method=PUT` method='post')
+              input(type="hidden" name="_method" value="put")
+              td: button(type='submit').complete-btn 완료
+          form(action=`/job/${job._id}/?_method=DELETE` method='post')
+              input(type="hidden" name="_method" value="put")
+              td: button(type='submit').complete-btn 삭제
+    form(action='/job' method='post')
+        tr
+          td 
+              input(name='title' placeholder='제목' )
+          td 
+              input(name='contents' placeholder='내용')
+          td 
+              input(name='deadline' type='date' id='Dateinput' placeholder='데드라인')
+          td 
+              input(name='priority' placeholder='우선순위' value=0)
+          td 
+              button(type='submit') 작성하기
+         
+  .error-message= error
+  script.
+    document.getElementById('Dateinput').value = new Date().toISOString().substring(0, 10);;
