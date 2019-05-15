@@ -61,16 +61,18 @@ router.put('/job/:id', async (req, res, next) => {
         }
         var query = { _id: req.params.id };
         
+        console.log(req.body);
         await Job.findOneAndUpdate(query, 
             { 
                 title : req.body.title,
                 contents : req.body.contents,
+                deadline : req.body.deadline,
                 priority : req.body.priority,
             },
             { useFindAndModify : false }
         );
-        res.status(200);
-        res.redirect(`/job/${job._id}`);
+        res.send("success");
+//        res.redirect(302,`/list`);
 
     } catch (error) {
         console.error(error);
