@@ -1,39 +1,41 @@
 extends layout
 block content
-  h1 ToDoList
-  p Welcome to #{title}
+  h1.text-monospace ToDoList
   script. 
     var idnum = 0;
   fieldset
-    legend 할일 목록
-    table
-        thead
+    legend.text-justify 할일 목록
+    table.table.table-striped
+        thead.thead-dark
             tr
                 th 제목
                 th 내용
                 th 마감기한
                 th 우선순위
                 th 완료여부
+                th 
+                th 
+                th 
         tbody
         for job in jobs
             tr(data-id=job._id)
             td= job.title
             td= job.contents
-            td= job.deadline
+            td.table-deadline#table-deadline= job.deadline
             td= job.priority
             td= job.complete == 1 ? '완료' : '미완료'
             form(action=`/job/${job._id}/complete?_method=PUT` method='post')
                 input(type="hidden" name="_method" value="put")
-                td: button(type='submit').complete-btn 완료
+                td: button(type='submit').btn.btn-success 완료
+                td: button(type='button' value=job).btn.btn-secondary 수정
             form(action=`/job/${job._id}/?_method=DELETE` method='post')
                 input(type="hidden" name="_method" value="put")
-                td: button(type='submit').delete-btn 삭제
-                td: button#modify-btn(type='button' value=job).modify-btn 수정
+                td: button(type='submit').btn.btn-danger 삭제
             script.
                 idnum++;
   fieldset
     legend 할일 입력
-    table
+    table.table.table-striped
         thead
             tr
                 th 제목
@@ -42,6 +44,7 @@ block content
                 th 우선순위
         tbody
         form(action='/job' method='post')
+            .input-group.input-group-sm.mb-3
             tr#input-id
                 td 
                     input#input-title(name='title' placeholder='제목' )
@@ -59,7 +62,11 @@ block content
   .error-message= error
   script.
     document.getElementById('input-date').value = new Date().toISOString().substring(0, 10);
-    document.querySelectorAll('.modify-btn').forEach(function (btn) {
+    document.querySelectorAll('.table-deadline').forEach(function (t) {
+        console.log(t);
+        t.innerHTML = new Date(t.innerHTML).toISOString().substring(0,10);
+    });
+    document.querySelectorAll('.btn.btn-secondary').forEach(function (btn) {
         btn.addEventListener('click', (e) => {
             document.getElementById('modify-submit').style.visibility = "visible";
 
