@@ -19,4 +19,6 @@ MONGO_ID=root
 MONGO_PASSWORD=root
 
 ~~~
+5. npm start
 
+6. localhost:8016/list 로 접속
