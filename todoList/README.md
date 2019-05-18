@@ -2,19 +2,20 @@
 
 ### 1. 실행방법
 ---
-- sh schript.sh
+1. schript.sh 실행
 
-- npm i
+2. npm i
 
-- mongo  
+3. mongo 실행 및 유저 등록 
   use admin  
-  db.createUser({ user: 'user1', pwd: '1234', roles:['root'] })
+  db.createUser({ user: 'root', pwd: 'root', roles:['root'] })  
   exit
 
-- .env
+
+4. <.env> 파일 작성
 ~~~
-MONGO_ID=user1
-MONGO_PASSWORD=1234
+MONGO_ID=root
+MONGO_PASSWORD=root
 
 ~~~
 
