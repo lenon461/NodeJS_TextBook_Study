@@ -20,8 +20,7 @@ router.get('/list', async (req, res, next) => {
 router.post('/job', async(req, res, next) => {
     try{
         if(!req.body.title || !req.body.contents){
-            const e = new Error('제목과 내용을 입력해 주십시오');
-            return next(e);
+            res.status(400).send("제목과 내용을 입력하세요");
         }
         const job = new Job({
             title: req.body.title,
@@ -42,29 +41,28 @@ router.put('/job/:id', async (req, res, next) => {
     try{
         const job = await Job.findOne({_id: req.params.id });
         if(!job){
-            const e = new Error('존재하지 않는 포스트 입니다.');
-            return next(e);
+            res.status(400).send("제목과 내용을 입력하세요");
         }
         else if(!req.body.title || !req.body.contents || req.body.title == ""){
-            const e = new Error('제목과 내용을 입력해 주십시오');
-            console.log("#");
-            return next(e);
+            res.status(400).send("제목과 내용을 입력하세요");
         }
-        var query = { _id: req.params.id };
-            console.log("#2");
-        
-        console.log(req.body);
-        await Job.findOneAndUpdate(query, 
-            { 
-                title : req.body.title,
-                contents : req.body.contents,
-                deadline : req.body.deadline,
-                priority : req.body.priority,
-            },
-            { useFindAndModify : false }
-        );
-        res.send(404,"success");
-       // res.redirect(302,`/list`);
+        else {
+                var query = { _id: req.params.id };
+                console.log("#2");
+            
+            console.log(req.body);
+            await Job.findOneAndUpdate(query, 
+                { 
+                    title : req.body.title,
+                    contents : req.body.contents,
+                    deadline : req.body.deadline,
+                    priority : req.body.priority,
+                },
+                { useFindAndModify : false }
+            );
+            res.send(302,"수정에 성공하였습니다.");
+           // res.redirect(302,`/list`);
+        }
 
     } catch (error) {
         console.error(error);
@@ -75,8 +73,7 @@ router.put('/job/:id/complete', async (req, res, next) => {
     try{
         const job = await Job.findOne({_id: req.params.id });
         if(!job){
-            const e = new Error('존재하지 않는 포스트 입니다.');
-            return next(e);
+            res.send(302,"완료되었습니다");
         }
         const iscompleted = job.complete? 0:1
         var query = { _id: req.params.id };
