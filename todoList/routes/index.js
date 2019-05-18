@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/list', async (req, res, next) => {
     try{
-        const jobs = await Job.find({}).sort('priority');
+        const jobs = await Job.find({}).sort({'deadline':1, 'priority':-1});
         res.render('main', {jobs,  title: 'Expxxress' });
     } catch (error){
         console.error(error);
