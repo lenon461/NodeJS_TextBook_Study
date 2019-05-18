@@ -2,9 +2,12 @@
 
 ### 1. 실행방법
 ---
-1. schript.sh 실행
+1. sudo apt-get install git  
+   git clone https://github.com/lenon461/Todolist  
+   cd Todolist  
+   sh schript.sh  
 
-2. npm i
+2. npm i  
 
 3. mongo 실행 및 유저 등록  
 ~~~
