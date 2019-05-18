@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
-  description: "Programmers Internship Server Assignment"
+  description: Programmers Internship Server Assignment
   version: 0.0.1
-  title: To Do List 
+  title: To Do List
   contact:
     email: lenon461@gmail.com
   license:
@@ -19,13 +19,12 @@ tags:
 schemes:
   - http
 paths:
-  /job:
+  /api/job:
     get:
       tags:
         - job
       summary: getAlljob
       description: ''
-      operationId: test
       responses:
         '200':
           description: success
@@ -42,18 +41,16 @@ paths:
         - in: body
           name: body
           schema:
-              $ref: '#/definitions/job'
+            $ref: '#/definitions/job'
       responses:
         '200':
-         description: success
-    
-  /job/{id}:
+          description: success
+  /api/job/{id}:
     get:
       tags:
         - job
       summary: getOnejob
       description: ''
-      operationId: test
       parameters:
         - in: path
           name: id
@@ -69,31 +66,29 @@ paths:
       produces:
         - application/json
       parameters:
-          - in: path
-            name: id
-          - in: body
-            name: body
-            schema:
-                $ref: '#/definitions/job'
+        - in: path
+          name: id
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/job'
       responses:
         '200':
-         description: success
+          description: success
         '302':
-         description: success
+          description: success
     delete:
-        tags:
-          - job
-        summary: delete One Job
-        parameters:
-            - in: path
-              name: id
-              schema:
-                  $ref: '#/definitions/job'
-        responses:
-          '200':
-           description: success
-
-    
+      tags:
+        - job
+      summary: delete One Job
+      parameters:
+        - in: path
+          name: id
+          schema:
+            $ref: '#/definitions/job'
+      responses:
+        '200':
+          description: success
 securityDefinitions:
   petstore_auth:
     type: oauth2
@@ -108,19 +103,16 @@ securityDefinitions:
     in: header
 definitions:
   job:
-      type: object
-      properties:
-          title:
-              type: string
-          contents:
-              type: string
-          #deadline:
-          #    type: string
-          #    format: date
-          complete:
-              type: boolean
-          priority:
-              type: number
+    type: object
+    properties:
+      title:
+        type: string
+      contents:
+        type: string
+      complete:
+        type: boolean
+      priority:
+        type: number
 externalDocs:
   description: Find out more about Swagger
   url: 'http://swagger.io'

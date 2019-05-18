@@ -11,7 +11,7 @@ const swaggeryaml = yaml.load('./swagger/swagger.yaml');
 const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
 const connect = require('./schemas');
 
 const app = express();
@@ -32,7 +32,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggeryaml));
 app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
