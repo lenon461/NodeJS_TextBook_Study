@@ -6,7 +6,7 @@
 
 2. npm i
 
-3. mongo 실행 및 유저 등록 
+3. mongo 실행 및 유저 등록  
   use admin  
   db.createUser({ user: 'root', pwd: 'root', roles:['root'] })  
   exit
