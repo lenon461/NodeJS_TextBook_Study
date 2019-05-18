@@ -31,8 +31,6 @@ block content
             form(action=`/job/${job._id}/?_method=DELETE` method='post')
                 input(type="hidden" name="_method" value="put")
                 td: button(type='submit').btn.btn-danger 삭제
-            script.
-                idnum++;
   fieldset
     legend 할일 입력
     table.table.table-striped
@@ -60,6 +58,7 @@ block content
                     button#modify-submit(type='button' style='visibility: hidden') 수정하기
 
   .error-message= error
+  button#btntest(type='button') calculate
   script.
     document.getElementById('input-date').value = new Date().toISOString().substring(0, 10);
     document.querySelectorAll('.table-deadline').forEach(function (t) {

@@ -17,11 +17,11 @@ router.get('/list', async (req, res, next) => {
 
     }
 });
-router.post('/job', async(req, res) => {
+router.post('/job', async(req, res, next) => {
     try{
         if(!req.body.title || !req.body.contents){
-            console.log('제목과 내용을 입력해주세요');
-            return res.redirect('/list');
+            const e = new Error('제목과 내용을 입력해 주십시오');
+            return next(e);
         }
         const job = new Job({
             title: req.body.title,
@@ -42,10 +42,16 @@ router.put('/job/:id', async (req, res, next) => {
     try{
         const job = await Job.findOne({_id: req.params.id });
         if(!job){
-            console.log("존재하지 않는 포스트 입니다");
-            return res.redirect('/');
+            const e = new Error('존재하지 않는 포스트 입니다.');
+            return next(e);
+        }
+        else if(!req.body.title || !req.body.contents || req.body.title == ""){
+            const e = new Error('제목과 내용을 입력해 주십시오');
+            console.log("#");
+            return next(e);
         }
         var query = { _id: req.params.id };
+            console.log("#2");
         
         console.log(req.body);
         await Job.findOneAndUpdate(query, 
@@ -57,19 +63,20 @@ router.put('/job/:id', async (req, res, next) => {
             },
             { useFindAndModify : false }
         );
-        res.send("success");
-//        res.redirect(302,`/list`);
+        res.send(404,"success");
+       // res.redirect(302,`/list`);
 
     } catch (error) {
         console.error(error);
+        next(error);
     }
 });
 router.put('/job/:id/complete', async (req, res, next) => {
     try{
         const job = await Job.findOne({_id: req.params.id });
         if(!job){
-            console.log("존재하지 않는 포스트 입니다");
-            return res.redirect('/');
+            const e = new Error('존재하지 않는 포스트 입니다.');
+            return next(e);
         }
         const iscompleted = job.complete? 0:1
         var query = { _id: req.params.id };
@@ -83,6 +90,7 @@ router.put('/job/:id/complete', async (req, res, next) => {
 
     } catch (error) {
         console.error(error);
+        next(error);
     }
 });
 router.delete('/job/:id', async (req, res, next) => {
@@ -91,6 +99,7 @@ router.delete('/job/:id', async (req, res, next) => {
         res.redirect(302, `/list`);
     } catch (error) {
         console.error(error);
+        next(error);
     }
 });
 
